@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 export default function TextForm(props) {
 
     
-    var [text, setText] = useState('Enter Your Text');
+    const [text, setText] = useState('Enter Your Text');
     // text = "new text"; //wrong why to change text
     // setText("new text"); //Correct why to change text
 
@@ -38,6 +38,17 @@ export default function TextForm(props) {
         setText(event.target.value);
     }
 
+    const handleCopy = () => {
+        var text = document.getElementById('myBox');
+        text.select();
+        navigator.clipboard.writeText(text.value);
+    }
+
+    const handleExtraSpace = () => {
+        let newText = text.split(/[ ]+/);
+        setText(newText.join(" "));
+    }
+
     return (
         <>
         <div className='container'>
@@ -49,6 +60,8 @@ export default function TextForm(props) {
             <button className="btn btn-primary mx-2" onClick={handleLoClick}>Convert To Lower Case</button> 
             <button className="btn btn-primary mx-2" onClick={handleClearClick}>Clear Text</button>  
             <button className="btn btn-primary mx-2" onClick={handleSpeak}>Speak</button>  
+            <button className="btn btn-primary mx-2" onClick={handleCopy}>Copy Text</button>  
+            <button className="btn btn-primary mx-2" onClick={handleExtraSpace}>Remove Extra Space</button>  
             
         </div>
 
