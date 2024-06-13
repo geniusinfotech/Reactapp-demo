@@ -14,17 +14,22 @@ export default function TextForm(props) {
         // console.log("Uppercase was clicked" + text);
         let newText = text.toUpperCase();
         setText(newText);
+        props.showAlert("Coverted to UpperCase", "success")
     }
 
     const handleLoClick = () => {
         let newText = text.toLowerCase();
         setText(newText);
+        props.showAlert("Coverted to LowerCase", "success")
+        
     }
     
 
     const handleClearClick = () => {
         let newText = '';
         setText(newText);
+        props.showAlert("Text Filed Empty", "success")
+
     }
 
     const handleSpeak = () => {
@@ -42,6 +47,8 @@ export default function TextForm(props) {
         var text = document.getElementById('myBox');
         text.select();
         navigator.clipboard.writeText(text.value);
+        props.showAlert("Copy on Clipborad", "success")
+
     }
 
     const handleExtraSpace = () => {
@@ -51,10 +58,10 @@ export default function TextForm(props) {
 
     return (
         <>
-        <div className='container'>
+        <div className='container' style={{color:props.mode === 'dark' ? 'white' : 'black' }}>
             <h1>{props.heading} </h1>
             <div className="mb-3">
-                <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
+                <textarea className="form-control" value={text} onChange={handleOnChange} style={{background:props.mode === 'dark' ? 'gray' : 'white',color:props.mode === 'dark' ? 'white' : 'black' }} id="myBox" rows="8"></textarea>
             </div>
             <button className="btn btn-primary mx-2" onClick={handleUpClick}>Convert To Upeer Case</button> 
             <button className="btn btn-primary mx-2" onClick={handleLoClick}>Convert To Lower Case</button> 
@@ -65,12 +72,13 @@ export default function TextForm(props) {
             
         </div>
 
-        <div className="container my-3">
+        <div className="container my-3" style={{color:props.mode === 'dark' ? 'white' : 'black'}}>
             <h1>Your Text Summary</h1>
-            <p>{text.split(" ").length} words and {text.length} characters</p>
+            {/* <p>{text.split(" ").length-1} words and {text.length} characters</p> */}
+            <p>{text.length === 0 ? 0 : text.trim().split(" ").length} words and {text.length} characters</p>
             <p>{0.008 * text.split(" ").length} Minutes Read</p>
             <h2>Preview</h2>
-            <p>{text}</p>
+            <p>{text.length>0 ? text : "Enter something in the textbox above to preview it here"}</p>
         </div>
         </>
     )
