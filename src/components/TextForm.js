@@ -48,7 +48,7 @@ export default function TextForm(props) {
     return (
         <div>
             <div className="my-5 container">
-                <h1 className="">{props.heading}</h1>
+                <h1>{props.heading}</h1>
                 <textarea className={`form-control bg-${props.mode === "light" ? "light" : "dark"} text-${props.mode === "light" ? "dark" : "light"}`} id="exampleFormControlTextarea1" rows="10" value={text} onChange={handleOnChange}></textarea>
                 <button className='btn btn-outline-danger mt-3' onClick={handleUpChange}>Convert To Upper Case</button>&nbsp;&nbsp;&nbsp;
                 <button className='btn btn-outline-dark mt-3' onClick={handleWithChange}>Convert To Lower Case</button>&nbsp;&nbsp;&nbsp;
@@ -60,8 +60,8 @@ export default function TextForm(props) {
 
             <div className="container">
                 <h2>Your Text Summary</h2>
-                <p>{text.split(" ").length}Words</p>
-                <p>{text.length}Characters</p>
+                <p>{text.split(" ").length} Words</p>
+                <p>{text.length} Characters</p>
                 <p>{0.008 * text.split("").length}Reading Time</p>
                 <h3>Previews</h3>
                 <p>{text}</p>
