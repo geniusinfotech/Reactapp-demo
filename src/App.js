@@ -30,13 +30,19 @@ function App() {
       document.body.style.color = "white";
       setmyText("Enable Light Mode");
       showAlert("Dark Mode Has Been Enable", "success" )
+      setInterval(() => {
+        document.title = 'SIT - Admission'
+        }, 2000);
+      setInterval(() => {
+          document.title = 'SIT - B.sc.IT'
+          }, 1500);
     } else {
       setMode('light');
       document.body.style.background = "white";
       document.body.style.color = "black";
       setmyText("Enable Dark Mode");
       showAlert("Light Mode Has Been Enable", "success" )
-
+      document.title= "SIT - Light Mode"
     }
   }
 
